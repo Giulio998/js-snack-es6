@@ -51,11 +51,81 @@ const getIdAndVote = (arr, val1, val2) => {
 };
 console.log(getIdAndVote(students, 120, 70))
 
-const capitalize = (phrase) => {
-    return phrase.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ');
+const upperCased = (phrase) => {
+    return phrase.split(' ').map(word => word.toUpperCase()).join(' ');
 };
 
-(getIdAndVote(students,120,70)).forEach((element) => {
-    element.name = capitalize(element.name);
+getIdAndVote(students,120,70).forEach((element) => {
+    element.name = upperCased(element.name);
     console.log(`${element.name} (id: ${element.id}), con un voto di: ${element.vote}`);
 });
+
+
+
+
+/* SNACK 3 */
+
+const bici = [
+    {nome: 'bici1', peso: 5} ,
+    {nome: 'bici2', peso: 3} ,
+    {nome: 'bici3', peso: 6} ,
+    {nome: 'bici4', peso: 8} ,
+    {nome: 'bici5', peso: 2} ,
+    {nome: 'bici6', peso: 4} ,
+    {nome: 'bici7', peso: 7} 
+]
+
+let pesoMin = 0;
+
+for (let i = 0; i < bici.length; i++) {
+    console.log(pesoMin);
+    if (bici[i].peso < bici[pesoMin].peso) {
+        pesoMin = i
+    }
+    
+}
+
+console.log(bici[pesoMin]);
+
+/* SNACK 4 */
+
+const teams = [
+    {nome:'Milan', punti: 0, falliSubiti: 0},
+    {nome:'Inter', punti: 0, falliSubiti: 0},
+    {nome:'Napoli', punti: 0, falliSubiti: 0},
+    {nome:'Roma', punti: 0, falliSubiti: 0},
+    {nome:'Fiorentina', punti: 0, falliSubiti: 0},
+    {nome:'Lazio', punti: 0, falliSubiti: 0}
+]
+
+const getRandomNumber = (min,max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+for (let i = 0; i < teams.length; i++) {
+    let team = teams[i];
+    team.falliSubiti = getRandomNumber(1,70);
+    team.punti = getRandomNumber(1,100);
+}
+
+console.table(teams);
+
+const newTeamsList = [];
+
+for (let i = 0; i < teams.length; i++) {
+    let team = teams[i];
+    const { nome, falliSubiti } = team;
+    newTeamsList.push({ nome, falliSubiti });
+};
+
+console.table(newTeamsList);
+
+for (let i = 0; i < newTeamsList.length; i++) {
+    let currentTeam = newTeamsList[i];
+    for (let key in currentTeam) {
+    document.getElementById("list").innerHTML += `<li>${key + '  '} : ${currentTeam[key]}</li>`
+}
+
+} 
+
+
+
+    
